@@ -1,6 +1,6 @@
 import datetime
 from sqlalchemy import Column, DateTime, String, Boolean
-from app.db.base_class import Base
+from crud_app.app.db.base_class import Base
 
 
 class Asset(Base):

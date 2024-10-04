@@ -1,1 +1,1 @@
-from .asset import asset
+from .asset import Asset

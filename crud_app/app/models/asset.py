@@ -1,6 +1,6 @@
 import datetime
 from sqlalchemy import Column, DateTime, String, Boolean, Float
-from sqlalchemy import Column, Enum, ForeignKey
+from sqlalchemy import Column, ForeignKey
 from crud_app.app.db.base_class import Base
 
 

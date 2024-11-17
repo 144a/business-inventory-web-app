@@ -16,7 +16,7 @@ def create_brand(db: Session, new_brand: schemas.Brand) -> schemas.Brand:
                                 detail=f'Brand with name {new_brand.name} already exists')
 
   db_brand = crud.brand.create(db=db, obj_in=new_brand)
-  return schemas.brand.model_validate(db_brand)
+  return schemas.Brand.model_validate(db_brand)
 
 def get_brand(db: Session, brand_name: str) -> schemas.Brand:
   logger.logger.info('Getting Brand: %s', brand_name)

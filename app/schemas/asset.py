@@ -9,11 +9,11 @@ class AssetBase(pydantic.BaseModel):
 
 
 class Asset(AssetBase):
-  model_id = str
-  type: str
+  model_id: str
+  #type: str
   serial_number: str
-  hours_state = str
-  is_working = bool
+  hours_stat: str
+  is_working: bool
   description: str
   is_fixed_asset: bool
   is_barcode_generated: bool

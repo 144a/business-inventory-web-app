@@ -10,7 +10,7 @@ class Asset(Base):
   # type = Column(String, ForeignKey('assetType.type'), nullable=True)
   serial_number = Column(String, nullable=True)
   hours_state = Column(String, nullable=True)
-  is_working = Column(Boolean, default=False, nullable=False)
+  is_working = Column(Boolean, default=False, nullable=True)
   is_fixed_asset = Column(Boolean, default=False, nullable=False)
   description = Column(String, nullable=False)
   is_barcode_generated = Column(Boolean, unique=False, default=False, nullable=False)

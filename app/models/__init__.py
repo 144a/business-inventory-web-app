@@ -1,2 +1,2 @@
 from .asset import Asset
-from .model import Brand
+from .model import Model

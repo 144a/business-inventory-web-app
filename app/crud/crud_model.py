@@ -3,9 +3,9 @@ from app import models
 from app import schemas
 
 
-class CRUDBrand(base.CRUDBase[models.Brand, schemas.Brand,
-                                     schemas.Brand]):
+class CRUDModel(base.CRUDBase[models.Model, schemas.Model,
+                                     schemas.Model]):
   pass
 
 
-brand = CRUDBrand(models.Asset)
+model = CRUDModel(models.Model)

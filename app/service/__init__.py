@@ -1,1 +1,1 @@
-from .model_service import create_brand, get_brand, get_brands, remove_brand 
+from .model_service import create_model, get_model, get_models, remove_model 

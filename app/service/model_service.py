@@ -8,35 +8,35 @@ from app import schemas
 
 logger.logger.setLevel(logging.INFO)
 
-def create_brand(db: Session, new_brand: schemas.Brand) -> schemas.Brand:
-  logger.logger.info('Creating Brand: %s', new_brand.model_dump_json())
-  existing_db_brand = crud.brand.get(db=db, id_=new_brand.name)
-  if existing_db_brand is not None:
+def create_model(db: Session, new_model: schemas.Model) -> schemas.Model:
+  logger.logger.info('Creating model: %s', new_model.model_dump_json())
+  existing_db_model = crud.model.get(db=db, id_=new_model.name)
+  if existing_db_model is not None:
     raise fastapi.HTTPException(status_code=fastapi.status.HTTP_409_CONFLICT,
-                                detail=f'Brand with name {new_brand.name} already exists')
+                                detail=f'model with name {new_model.name} already exists')
 
-  db_brand = crud.brand.create(db=db, obj_in=new_brand)
-  return schemas.Brand.model_validate(db_brand)
+  db_model = crud.model.create(db=db, obj_in=new_model)
+  return schemas.Model.model_validate(db_model)
 
-def get_brand(db: Session, brand_name: str) -> schemas.Brand:
-  logger.logger.info('Getting Brand: %s', brand_name)
-  db_brand = crud.brand.get(db=db, id_=brand_name)
-  if db_brand is None:
+def get_model(db: Session, model_name: str) -> schemas.Model:
+  logger.logger.info('Getting model: %s', model_name)
+  db_model = crud.model.get(db=db, id_=model_name)
+  if db_model is None:
     raise fastapi.HTTPException(status_code=fastapi.status.HTTP_404_NOT_FOUND,
-                                detail=f'Brand with name {brand_name} not found')
-  return schemas.Brand.model_validate(db_brand)
+                                detail=f'model with name {model_name} not found')
+  return schemas.Model.model_validate(db_model)
 
-def get_brands(db: Session, skip: int = 0, limit: int = 100) -> list[schemas.Brand]:
-    logger.logger.info('Getting Brand List...')
-    brands = crud.brand.get_multi(db, skip=skip, limit=limit)
-    return [schemas.Brand.model_validate(brand) for brand in brands]
+def get_models(db: Session, skip: int = 0, limit: int = 100) -> list[schemas.Model]:
+    logger.logger.info('Getting model List...')
+    models = crud.model.get_multi(db, skip=skip, limit=limit)
+    return [schemas.Model.model_validate(model) for model in models]
     
-def remove_brand(db: Session, brand_name: str) -> schemas.Brand:
-  logger.logger.info('Removing Brand: %s', brand_name)
-  existing_db_brand = crud.brand.get(db, id_=brand_name)
-  if existing_db_brand is None:
+def remove_model(db: Session, model_name: str) -> schemas.Model:
+  logger.logger.info('Removing model: %s', model_name)
+  existing_db_model = crud.model.get(db, id_=model_name)
+  if existing_db_model is None:
     raise fastapi.HTTPException(status_code=fastapi.status.HTTP_404_NOT_FOUND,
-                                detail=f'Brand with name {brand_name} not found')
+                                detail=f'model with name {model_name} not found')
 
-  return schemas.Brand.model_validate(crud.brand.remove(db=db, id_=brand_name))
+  return schemas.Model.model_validate(crud.model.remove(db=db, id_=model_name))
 

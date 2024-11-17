@@ -8,4 +8,4 @@ class CRUDBrand(base.CRUDBase[models.Brand, schemas.Brand,
   pass
 
 
-asset = CRUDBrand(models.Asset)
+brand = CRUDBrand(models.Asset)

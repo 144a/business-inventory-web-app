@@ -1,1 +1,0 @@
-from .crud_asset import asset

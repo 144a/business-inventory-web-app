@@ -1,7 +1,7 @@
 import datetime
 from sqlalchemy import Column, DateTime, String, Boolean, Float
-from sqlalchemy import Column, Enum, ForeignKey
-from crud_app.app.db.base_class import Base
+from sqlalchemy import Column, ForeignKey
+from app.db.base_class import Base
 
 
 class Asset(Base):

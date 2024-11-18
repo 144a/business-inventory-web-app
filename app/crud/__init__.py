@@ -1,2 +1,2 @@
-from .crud_asset import asset
-from .crud_model import model
+from .crud_asset import asset  # noqa
+from .crud_model import model  # noqa

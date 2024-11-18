@@ -1,6 +1,5 @@
-fastapi
-uvicorn[standard]
-SQLAlchemy
-alembic
-psycopg2-binary
-pydantic
+fastapi==0.115.5
+pydantic==2.9.2
+pytest==8.1.1
+pytest==8.3.3
+SQLAlchemy==2.0.35

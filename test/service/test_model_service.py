@@ -11,7 +11,7 @@ def mock_db():
     return MagicMock()
 
 @pytest.fixture
-def model_schema():
+def model_schema() -> schemas.Model:
     return schemas.Model(id=uuid.uuid4(), type="Monitor", name="Testmodel", description="Test Monitor")
 
 @pytest.fixture
@@ -66,6 +66,24 @@ def test_get_models(mock_db, mock_crud):
     assert len(result) == 2
     assert result[0].name == "Testmodel1"
     assert result[1].name == "Testmodel2"
+    
+def test_get_model_by_name(mock_db, model_schema, mock_crud):
+    mock_crud.get_by_name.return_value = model_schema
+
+    result = model_service.get_model_by_name(mock_db, model_name=model_schema.name)
+
+    mock_crud.get_by_name.assert_called_once_with(db=mock_db, model_name=model_schema.name)
+    assert result == model_schema
+
+def test_get_model_by_name_not_found(mock_db, model_schema, mock_crud):
+    mock_crud.get_by_name.return_value = None
+
+    with pytest.raises(HTTPException) as exc_info:
+        model_service.get_model_by_name(mock_db, model_name=model_schema.name)
+
+    mock_crud.get_by_name.assert_called_once_with(db=mock_db, model_name=model_schema.name)
+    assert exc_info.value.status_code == 404
+    assert "not found" in exc_info.value.detail
 
 def test_remove_model_success(mock_db, model_schema, mock_crud):
     mock_crud.get.return_value = model_schema

@@ -2,14 +2,9 @@ import pydantic
 import datetime
 
 
-class AssetBase(pydantic.BaseModel):
+class Asset(pydantic.BaseModel):
   id: str
-
-  model_config = pydantic.ConfigDict(extra='ignore')
-
-
-class Asset(AssetBase):
-  model_id: str
+  #model_id: str
   #type: str
   serial_number: str
   hours_stat: str

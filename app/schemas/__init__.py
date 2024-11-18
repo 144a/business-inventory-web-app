@@ -1,2 +1,2 @@
-from .asset import Asset, AssetBase
-from .model import Brand
+from .asset import Asset
+from .model import Model

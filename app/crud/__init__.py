@@ -1,2 +1,2 @@
 from .crud_asset import asset
-from .crud_model import brand
+from .crud_model import model

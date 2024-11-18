@@ -13,7 +13,7 @@ logger.logger.setLevel(logging.INFO)
 
 def create_model(db: Session, new_model: schemas.Model) -> schemas.Model:
     logger.logger.info("Creating model: %s", new_model.model_dump_json())
-    existing_db_model = crud.model.get(db=db, id_=new_model.id)
+    existing_db_model = crud.model.get(db=db, id_=str(new_model.id))
     if existing_db_model is not None:
         raise fastapi.HTTPException(
             status_code=fastapi.status.HTTP_409_CONFLICT,
@@ -26,7 +26,7 @@ def create_model(db: Session, new_model: schemas.Model) -> schemas.Model:
 
 def get_model(db: Session, model_id: uuid.UUID) -> schemas.Model:
     logger.logger.info("Getting model: %s", model_id)
-    db_model = crud.model.get(db=db, id_=model_id)
+    db_model = crud.model.get(db=db, id_=str(model_id))
     if db_model is None:
         raise fastapi.HTTPException(
             status_code=fastapi.status.HTTP_404_NOT_FOUND,
@@ -54,11 +54,11 @@ def get_models(db: Session, skip: int = 0, limit: int = 100) -> list[schemas.Mod
 
 def remove_model(db: Session, model_id: uuid.UUID) -> schemas.Model:
     logger.logger.info("Removing model: %s", model_id)
-    existing_db_model = crud.model.get(db, id_=model_id)
+    existing_db_model = crud.model.get(db, id_=str(model_id))
     if existing_db_model is None:
         raise fastapi.HTTPException(
             status_code=fastapi.status.HTTP_404_NOT_FOUND,
             detail=f"model with id {model_id} not found",
         )
 
-    return schemas.Model.model_validate(crud.model.remove(db=db, id_=model_id))
+    return schemas.Model.model_validate(crud.model.remove(db=db, id_=str(model_id)))

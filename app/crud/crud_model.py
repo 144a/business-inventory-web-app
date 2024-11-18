@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 
 
 class CRUDModel(base.CRUDBase[models.Model, schemas.Model, schemas.Model]):
-    def get_by_name(self, db: Session, model_name: str) -> models.Model | None:
+    def get_by_name(self, db: Session, model_name: str) -> list[models.Model] | None:
         return db.query(models.Model).filter(models.Model.name == model_name).all()
 
 

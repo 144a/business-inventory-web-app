@@ -5,7 +5,6 @@ import datetime
 class Asset(pydantic.BaseModel):
     id: str
     # model_id: str
-    # type: str
     serial_number: str
     hours_stat: str
     is_working: bool

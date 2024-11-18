@@ -1,2 +1,2 @@
 from .asset import Asset  # noqa
-from .model import Model  # noqa
+from .model import Model, ModelTags  # noqa

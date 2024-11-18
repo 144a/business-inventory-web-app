@@ -10,3 +10,9 @@ class CRUDModel(base.CRUDBase[models.Model, schemas.Model, schemas.Model]):
 
 
 model = CRUDModel(models.Model)
+
+
+class CRUDModelTags(base.CRUDBase[models.ModelTags, schemas.ModelTags, schemas.ModelTags]):
+  pass
+
+model_tags = CRUDModelTags(models.ModelTags)

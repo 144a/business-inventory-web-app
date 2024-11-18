@@ -49,6 +49,6 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
         obj = db.query(self.model).get(id_)
         db.delete(obj)
         if obj is None:
-          raise ValueError(f"Object with ID {id_} not found")
+            raise ValueError(f"Object with ID {id_} not found")
         db.commit()
         return obj

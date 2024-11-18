@@ -1,2 +1,2 @@
-from .asset import Asset
-from .model import Model
+from .asset import Asset  # noqa
+from .model import Model  # noqa
